@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="./for_yandex.css" media="all" type="text/css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="jqcloud/jqcloud.css"/>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+        <script type="text/javascript" src="jqcloud/jqcloud-1.0.0.js"></script>
+		<script type="text/javascript" src="equalizer_plugin.js"></script> <!-- ПЛАГИН ЭКВАЛАЙЗЕРА -->
+		<script type="text/javascript">
+            var word_list = [
+                {text:"ШРИ", weight:13},
+                {text:"Yandex", weight:10.5},
+                {text:"Wow!", weight:9.4},
+                {text:"So nice", weight:8},
+                {text:"#iloveJS", weight:6.2},
+                {text:"Попробуем..", weight:5},
+                {text:"Интерфейсы", weight:5},
+				{text:"лолчто", weight:5},
+				{text:"#зачемоблакослов?", weight:5}
+            ];
+            $(function () {
+                $("#cloud").jQCloud(word_list);
+            });
+        </script>
+
+	</head>
+	<body>
+		<div id="main_content">
+			<div class="header_block">
+				<div class="logo"></div>
+				<div id="cloud"></div>
+			</div>
+			<div class="content_block">
+				<h1>Эквалайзеры</h1>
+				<div class="container">
+					Оформил "эквалайзеры" в виде плагина JQuery. Ошибка в коде (в первую очередь) была в том, что функция анимации для <b>всего контейнера</b> вызывалась из каждой его линии, что в итоге и приводило к зависанию. Я изменил код таким образом, чтобы каждая линия эквалайзера имела свою функцию анимации. Также я позволил себе включить JQuery по ссылке (а не в виде кода, как в примере).
+				</div>
+				<h1>Эквалайзер 100х100</h1>
+				<div class="container">
+					<div id="eq_1" class="equalizer-wrapper">
+						<div class="equalizer small"></div>
+					</div>
+					<div class="inline_buttons">
+						<button onclick="$('#eq_1 .equalizer').equalizer();">START</button>
+						<button onclick="$('#eq_1 .equalizer').equalizer('stop');">STOP</button>
+						<button onclick="$('#eq_1 .equalizer').equalizer('contin');">CONTINUE</button>
+						<button onclick="$('#eq_1 .equalizer').equalizer('del');">FREE</button>
+					</div>
+					<div class="record_clr"></div>
+				</div>
+				<h1>Эквалайзер 200х200</h1>
+				<div class="container">
+					<div id="eq_2" class="equalizer-wrapper">
+						<div class="equalizer med"></div>
+					</div>
+					<div class="inline_buttons">
+						<button onclick="$('#eq_2 .equalizer').equalizer();">START</button>
+						<button onclick="$('#eq_2 .equalizer').equalizer('stop');">STOP</button>
+						<button onclick="$('#eq_2 .equalizer').equalizer('contin');">CONTINUE</button>
+						<button onclick="$('#eq_2 .equalizer').equalizer('del');">FREE</button>
+					</div>
+					<div class="record_clr"></div>
+				</div>
+				<h1>Эквалайзер 300х300</h1>
+				<div class="container">
+					<div id="eq_3" class="equalizer-wrapper">
+						<div class="equalizer big"></div>
+					</div>
+					<div class="inline_buttons">
+						<button onclick="$('#eq_3 .equalizer').equalizer();">START</button>
+						<button onclick="$('#eq_3 .equalizer').equalizer('stop');">STOP</button>
+						<button onclick="$('#eq_3 .equalizer').equalizer('contin');">CONTINUE</button>
+						<button onclick="$('#eq_3 .equalizer').equalizer('del');">FREE</button>
+					</div>
+					<div class="record_clr"></div>
+				</div>
+		</div>
+	</body>
+</html>
+<html>
+<head>
