@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<link href="./for_yandex.css" media="all" type="text/css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="jqcloud/jqcloud.css"/>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+        <script type="text/javascript" src="jqcloud/jqcloud-1.0.0.js"></script>
+		<script type="text/javascript">
+            var word_list = [
+                {text:"ШРИ", weight:13},
+                {text:"Yandex", weight:10.5},
+                {text:"Wow!", weight:9.4},
+                {text:"So nice", weight:8},
+                {text:"#iloveJS", weight:6.2},
+                {text:"Попробуем..", weight:5},
+                {text:"Интерфейсы", weight:5},
+				{text:"лолчто", weight:5},
+				{text:"#зачемоблакослов?", weight:5}
+            ];
+            $(function () {
+                $("#cloud").jQCloud(word_list);
+            });
+        </script>
+			<style type="text/css">
+				.popup_holder{
+					display: none;
+					position: fixed;
+					text-align: center;
+					left: 0px; top: 0px;
+					z-index: 100;
+					height: 100%; width: 100%;
+					background: rgba(0,0,0,0.3);
+				}
+				.popup_holder:after {
+					content: '';
+					display: inline-block;
+					width:  0;
+					height: 100%;
+					vertical-align: middle;
+				} 
+				
+				.popup_wnd{
+					display: inline-block !important;
+					min-width: 200px;
+					font-size: 20px;
+					font-family: Arian, sans-serif;
+					color: white;
+					background: white;
+					border: 2px solid rgba(0,0,0,0.7) !important;
+					text-align: center;
+					vertical-align: middle;
+					padding: 10px;
+				}
+
+			</style>
+			<style type="text/css">
+				.pp_table{
+					position: absolute; 
+					top: 0px; 
+					left: 0px; 
+					display: none; 
+					background: rgba(0,0,0,0.3);
+					width: 100%; 
+					height: 100%;
+				}
+			</style>
+			
+			<script src="ui/jquery-ui.min.js"></script>
+			<link type="text/css" href="ui/jquery-ui.min.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div id="main_content">
+			<div class="header_block">
+				<div class="logo"></div>
+				<div id="cloud"></div>
+			</div>
+			<div class="content_block">
+				<h1>Всплывающее окно</h1>
+				<div class="container">
+					Первый способ - <b>реализация окна через блоки</b>, позиционирование средствами css. <br/>
+					Кругом одни плюсы. Из минусов - я не вполне уверен, работает ли <b>:after</b>, да и вообще все вышеописанное, корректно во всех браузерах.
+					<button onclick="$('#main_popup').show();">POPUP ME COMPLETELY!</button>
+				</div>
+				<div class="popup_holder" id="main_popup">
+					<div class="popup_wnd container">
+						<h2>Don't you want a cup of POPUP?</h2>
+						rly, it's a good idea! trust me
+						<button onclick="$('#main_popup').hide();">Закрыть</button>
+					</div>
+				</div>
+
+				<div class="container">
+					Второй способ - <b>таблица</b><br/>
+					Должна корректно работать во всех браузерах. Минусы - это таблица.
+					<button onclick="$('#table_popup').show();">POPUP ME TABLE!</button>
+				</div>
+				
+				<table id="table_popup" cellpadding=0 cellspacing=0 class="pp_table">
+					<tr height=100%>
+						<td vertical-align=middle style="text-align: center">
+							<div class="popup_wnd container">
+								<h2>Don't you want a cup of POPUP on TABLE?</h2>
+								rly, it's a good idea! trust me. But.. table's not so good, isn't it?
+								<button onclick="$('#table_popup').hide();">Закрыть</button>
+							</div>
+						</td>
+					</tr>
+				</table>
+				
+				<div class="container">
+					Третий способ - <b>JQuery UI.Dialog</b><br/>
+					Из плюсов - простота в использовании и отсутствие необходимости писать лишний код. Минусы - это все же плагин, и в нем много лишнего для наших целей. Также, при изменении содержимого такого окна во время его показа (пока окно видимо) нарушается расположение окна (уже не по центру страницы).
+					<button onclick="$('#jq_popup').dialog({ dialogClass: 'container', resizable: false });">POPUP ME through JQuery!</button>
+				</div>
+				
+				<div class="popup_wnd container" id="jq_popup" style="display: none !important;">
+					<h2>Don't you want a cup of POPUP? Its JQueried!</h2>
+					See, u can move it.. wherever u want. Its awesome, but.. a little bit slow.
+					<button onclick="$('#jq_popup').dialog('close');">Закрыть</button>
+				</div>		
+			</div>
+		</div>
+	</body>
+</html>
+<html>
+<head>
